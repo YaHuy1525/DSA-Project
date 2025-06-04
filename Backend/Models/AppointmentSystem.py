@@ -29,7 +29,9 @@ class AppointmentSystem:
         return self.appointments.get_user_appointments(username)
     
     def book_appointment(self, date, time, username):
-        return self.appointments.insert(date, time, username)
+        if self.appointments.find_appointment(self.appointments.root, date, time):
+            return False, "Appointment already exists"
+        return self.appointments.insert_node(date, time, username)
     
-    def remove_appointment(self, username):
-        return self.appointments.delete_appointment(username)
+    def remove_appointment(self, date, time):
+        return self.appointments.delete_node(date, time)

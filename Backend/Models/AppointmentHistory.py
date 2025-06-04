@@ -33,10 +33,10 @@ class AppointmentHistory:
             current = current.next
         return appointments
 
-    def remove_appointment(self, username):
+    def remove_appointment(self, date, time):
         current = self.head
         while current:
-            if current.username == username:
+            if current.date == date and current.time == time:
                 if current.prev:
                     current.prev.next = current.next
                 if current.next:
@@ -55,3 +55,4 @@ class AppointmentHistory:
         while current:
             print(f"Date: {current.date}, Time: {current.time}, Username: {current.username}")
             current = current.next
+

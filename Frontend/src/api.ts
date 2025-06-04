@@ -7,6 +7,7 @@ export interface BaseResponse {
 export interface Appointment {
   date: string;
   time: string;
+  username: string;
 }
 export interface User {
   email: string;
@@ -36,7 +37,7 @@ export const api = {
       console.error('Registration error:', error);
       return { 
         success: false, 
-        message: 'Không thể kết nối đến máy chủ. Vui lòng thử lại sau.' 
+        message: 'Error' 
       };
     }
   },
@@ -89,6 +90,24 @@ export const api = {
       return { 
         success: false, 
         message: 'Network error while booking appointment' 
+      };
+    }
+  },
+
+  async deleteAppointment(date: string, time: string): Promise<BaseResponse> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/appointments/delete/${date}/${time}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error deleting appointment:', error);
+      return { 
+        success: false, 
+        message: 'Error deleting appointment' 
       };
     }
   },

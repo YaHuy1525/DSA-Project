@@ -71,11 +71,11 @@ def book_appointment():
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 400
 
-@app.route('/api/appointments/history/<username>', methods=['GET'])
-def get_appointment_history(username):
+@app.route('/api/appointments/delete/<date>/<time>', methods=['DELETE'])
+def delete_appointment(date, time):
     try:
-        appointments = appointment_system.get_user_appointments(username)
-        return jsonify({'success': True, 'appointments': appointments})
+        success, message = appointment_system.remove_appointment(date, time)
+        return jsonify({'success': success, 'message': message})
     except Exception as e:
         return jsonify({'success': False, 'message': str(e)}), 400
 
