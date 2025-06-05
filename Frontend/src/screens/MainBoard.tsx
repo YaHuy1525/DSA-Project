@@ -35,7 +35,7 @@ const generateMonthDays = (year: number, month: number): DayInfo[] => {
     const date = new Date(year, month, day);
     const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
     const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-    const dateStr = date.toISOString().split('T')[0];
+    const dateStr = const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     
     days.push({
       id: `${year}-${month + 1}-${day}`,

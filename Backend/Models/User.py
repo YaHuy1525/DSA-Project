@@ -44,3 +44,8 @@ class HashTable:
         for item in self.table:
             if(item):
                 print(item)
+                
+                
+                
+                
+                
